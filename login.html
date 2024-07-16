@@ -34,6 +34,30 @@
         .content {
             padding: 20px;
         }
+        .notification {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: none;
+        }
+        .snowflake {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            font-size: 1em;
+            pointer-events: none;
+            color: white;
+            animation: fall 10s linear infinite;
+            z-index: 1000;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(100vh) translateX(10vw); }
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -59,6 +83,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
+    <script src="snow.js"></script>
 </head>
 <body>
     <div class="tab-bar">
@@ -75,5 +100,11 @@
             <button type="submit">Login</button>
         </form>
     </div>
+    <div class="notification" id="notification"></div>
+
+    <!-- Snowflakes -->
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
 </body>
 </html>

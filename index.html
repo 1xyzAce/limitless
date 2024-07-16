@@ -34,13 +34,38 @@
         .content {
             padding: 20px;
         }
+        .notification {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: none;
+        }
+        .snowflake {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            font-size: 1em;
+            pointer-events: none;
+            color: white;
+            animation: fall 10s linear infinite;
+            z-index: 1000;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(100vh) translateX(10vw); }
+        }
     </style>
-    <!-- Firebase Configuration -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
+    <script src="snow.js"></script>
 </head>
 <body>
 
@@ -53,8 +78,23 @@
 
     <div class="content">
         <h1>Welcome to the Test Website</h1>
-        <p>This is a sample website with a tab bar at the top and a specific color scheme.</p>
+        <div id="forum-section" style="display:none;">
+            <h2>Forum</h2>
+            <form id="post-form">
+                <textarea id="post-content" placeholder="Write your post here..." rows="4" cols="50"></textarea>
+                <br>
+                <button type="submit">Post</button>
+            </form>
+            <div id="posts"></div>
+        </div>
     </div>
+
+    <div class="notification" id="notification"></div>
+
+    <!-- Snowflakes -->
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
 
 </body>
 </html>
