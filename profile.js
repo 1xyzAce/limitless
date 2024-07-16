@@ -1,25 +1,28 @@
-// Ensure Firebase is initialized
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js';
 import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
 
 const auth = getAuth();
 const db = getFirestore();
 
-function updateProfileUI(user, userData) {
-    document.getElementById('profile-picture').src = userData.profile_picture || 'default-profile.png';
-    document.getElementById('username').textContent = userData.username || user.email;
-    document.getElementById('role-tag').textContent = userData.role || 'Member';
-}
-
-auth.onAuthStateChanged((user) => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const user = auth.currentUser;
     if (user) {
-        getDoc(doc(db, 'users', user.uid)).then((doc) => {
-            const userData = doc.data();
-            updateProfileUI(user, userData);
-        }).catch((error) => {
-            console.error("Error fetching user data: ", error);
-        });
-    } else {
-        window.location.href = 'login.html';
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userData = userDoc.data();
+
+        document.getElementById('username').textContent = userData.username || 'No Username';
+        document.getElementById('role-tag').textContent = getRoleTag(userData.role);
+        document.getElementById('profile-picture').src = userData.profile_picture || 'default-profile.png';
     }
 });
+
+function getRoleTag(role) {
+    switch (role) {
+        case 1:
+            return 'Admin';
+        case 2:
+            return 'Moderator';
+        default:
+            return 'User';
+    }
+}

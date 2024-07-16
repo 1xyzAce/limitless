@@ -38,22 +38,6 @@
         .content {
             padding: 20px;
         }
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-        }
-        .role-tag {
-            background-color: lightgreen;
-            color: green;
-            border-radius: 5px;
-            padding: 2px 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 10px;
-        }
         .notification {
             background-color: #444;
             color: white;
@@ -78,32 +62,32 @@
             0% { transform: translateY(0) translateX(0); }
             100% { transform: translateY(100vh) translateX(10vw); }
         }
-        form {
+        .profile-info {
             display: flex;
-            flex-direction: column;
+            align-items: center;
         }
-        input {
-            margin-bottom: 10px;
-            padding: 8px;
+        .profile-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .profile-info .username {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .profile-info .role-tag {
             font-size: 16px;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: rgb(23, 23, 23);
-            color: rgb(236, 236, 236);
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: rgb(44, 44, 44);
+            background-color: #d0ffd0;
+            padding: 5px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px #d0ffd0;
         }
     </style>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"></script>
     <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
     <script src="profile.js"></script>
     <script src="snow.js"></script>
 </head>
@@ -112,17 +96,23 @@
         <a href="index.html">Home</a>
         <a href="login.html">Login</a>
         <a href="register.html">Register</a>
-        <a href="profile.html" class="active">Profile</a>
+        <a href="profile.html" class="active" id="profile-tab">Profile</a>
         <a href="settings.html" class="settings"><i class="fas fa-cog"></i></a>
     </div>
     <div class="content">
         <h2>Profile</h2>
-        <div id="profile-info">
-            <img id="profile-picture" class="profile-picture" src="" alt="Profile Picture">
-            <h3 id="username"></h3>
-            <span id="role-tag" class="role-tag"></span>
+        <div class="profile-info">
+            <img id="profile-picture" src="" alt="Profile Picture">
+            <div>
+                <div class="username" id="username"></div>
+                <div class="role-tag" id="role-tag"></div>
+            </div>
         </div>
-        <div id="profile-options"></div>
+        <form id="update-profile-form">
+            <input type="text" id="new-username" placeholder="New Username">
+            <input type="text" id="new-profile-picture" placeholder="Profile Picture URL">
+            <button type="submit">Update Profile</button>
+        </form>
     </div>
     <div class="notification" id="notification"></div>
 
