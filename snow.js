@@ -11,4 +11,23 @@ function createSnowflakes() {
     }, 5000);
 }
 
-setInterval(createSnowflakes, 200);
+let snowInterval;
+
+function startSnowEffect() {
+    snowInterval = setInterval(createSnowflakes, 200);
+}
+
+function stopSnowEffect() {
+    clearInterval(snowInterval);
+    const snowflakes = document.querySelectorAll('.snowflake');
+    snowflakes.forEach(flake => flake.remove());
+}
+
+// Start snow effect if checkbox is checked
+document.getElementById('snow-toggle')?.addEventListener('change', (e) => {
+    if (e.target.checked) {
+        startSnowEffect();
+    } else {
+        stopSnowEffect();
+    }
+});
