@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tab-bar">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html" class="active">Settings</a>
+    </div>
+    <div class="content">
+        <h1>Settings</h1>
+        <form id="settings-form">
+            <input type="checkbox" id="dark-mode-toggle"> Dark Mode
+            <br>
+            <input type="file" id="profile-picture-input" accept="image/*"> Profile Picture
+            <br>
+            <input type="text" id="username-input" placeholder="New Username">
+            <br>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

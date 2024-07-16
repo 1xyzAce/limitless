@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.tab-bar {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+}
+
+.tab-bar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.tab-bar a.active {
+    background-color: #555;
+}
+
+.content {
+    padding: 20px;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#profile-info img, #profile-info h2 {
+    display: block;
+    margin: 10px auto;
+}
